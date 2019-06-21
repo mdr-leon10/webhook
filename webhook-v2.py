@@ -52,34 +52,43 @@ def webhook():
 
 	# Authentication 
 	if action == "nit":
-		res = identifyClient(req['queryResult']['queryText'])
+		res = 'Super ahora la cedula'
+		#res = identifyClient(req['queryResult']['queryText'])
 
 	elif action == "cedula":
-		res = identifyUser(req['queryResult']['queryText'])
+		res = 'Genial. Contraseña por favor'
+		#res = identifyUser(req['queryResult']['queryText'])
 
 	elif action == "contrasena":
-		res = validatePassword(req['queryResult']['queryText'])
+		res = 'y en que te puedo ayudar?'
+		#res = validatePassword(req['queryResult']['queryText'])
 
 	# follow-up
 	elif action == "casoSeguimiento":
-		res = getLastUpdate(req['queryResult']['queryText'])
+		res = 'Esto fue lo que paso: '
+		#res = getLastUpdate(req['queryResult']['queryText'])
 
 	elif action == "contactoEncargado": 
-		res = getInChargeCase()
+		res = 'regañalo a él'
+		#res = getInChargeCase()
 
 	# creation of cases
 
 	elif action == "solicitudCreacionCaso":
-		res = ciOfClient()
+		res = 'y sobre que creamos el caso creamos?'
+		#res = ciOfClient()
 
 	elif action == "CIafectado":
-		res = validarEventosCIafectado(req['queryResult']['queryText'])
+		res = 'quieres seguir?'
+		#res = validarEventosCIafectado(req['queryResult']['queryText'])
 
 	elif action == "CIafectadoNo":
-		res = CIafectadoNO()
+		res = 'gracias'
+		#res = CIafectadoNO()
 
 	elif action == "creacionCaso":
-		res = creacionCaso(req['queryResult']['queryText'])
+		res= 'Se creo el caso'
+		#res = creacionCaso(req['queryResult']['queryText'])
 	
 	# Response to the user
 	return make_response(jsonify({'fulfillmentText':res}))
