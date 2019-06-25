@@ -1,15 +1,12 @@
 runtime: python37
-api_version: 1
-threadsafe: true
 
 handlers:
-- url: /.*
-  script: webhook-v2.py
+- url: /static
+  static_dir: static
 
-libraries:
-- name: flask
-  version: 1.0.3
-  
+- url: /.*
+  script: auto
+
 env_variables:
   MYSQL_DNS:
   MYSQL_USER: root
