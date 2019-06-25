@@ -37,8 +37,13 @@ descripcionEventoG = ''
 '''
 Functions
 '''
+
+@app.route('/')
+def index():
+    return 'Hello World!'
+
 # Gets the JSON of the post method
-@app.route('/', methods = ['POST'])
+@app.route('/webhook', methods = ['POST'])
 def webhook():
 
 	# Intenta obtener el campo 'action' del json proveninete del post entrante, sino genera un error
