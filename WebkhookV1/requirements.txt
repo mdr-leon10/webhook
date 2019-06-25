@@ -1,1 +1,2 @@
 Flask==1.0.3
+mysql_connector_python==8.0.16
