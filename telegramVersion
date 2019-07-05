@@ -1,0 +1,39 @@
+from flask import Flask, request, make_response, jsonify, render_template, Response
+from functools import wraps
+import logging
+app = Flask(__name__)
+
+
+def requires_auth(f):
+	@wraps(f)
+	def decorated(*args, **kwards):
+		auth = request.authorization
+		if not auth or not check_auth(auth.username, auth.password):
+			return authenticate()
+		return f(*args, **kwards)
+	return decorated
+
+def chack_auth(username, password):
+	uname = "myuser"
+	pwd = "mypassword"
+
+	return username == uname and password == pwd
+
+def authenticate():
+	return Response('Could not verify your access level for that URL. \n' 
+		'You have to login with proper credentials', 401, {'WWW-Authenticate': 'Basic realm=" Login required" '})
+
+@app.route('/', methods=['POST'])
+@requires_auth
+def clasificar():
+	req = req.get_jason(silent = True, force=True)
+	try:
+		action = req.get('queryResult').get('action')
+	except AttributeError:
+		return 'json error'
+
+	if action == 'input.welcome':
+		res = 'Bienvenido!!'
+
+if __name__ == '__main__':
+	app.run(host='127.0.0.1', port=8080, debug=True)
